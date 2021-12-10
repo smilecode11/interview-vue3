@@ -1,24 +1,6 @@
-# learn-vue3_p1
+# vue3 学习
 
-## Project setup
-```
-yarn install
-```
+### 项目中可以使用 ts 代码
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### volar 插件 
+* ts + volar + script setup

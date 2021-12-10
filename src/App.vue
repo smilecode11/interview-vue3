@@ -1,17 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome to Vue3.0" />
+  <hr />
+  <LifeCyclesDemo v-if="flag" />
+  <button @click="flag = !flag">change flag</button>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import HelloWorld from "./components/HelloWorld.vue";
+import LifeCyclesDemo from "./components/LifeCyclesDemo.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      flag: true,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+    LifeCyclesDemo,
+  },
+};
 </script>
 
 <style>
