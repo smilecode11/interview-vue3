@@ -21,6 +21,11 @@
   <TeleportDemo />
   <hr />
   <SuspenseDemo />
+  <hr />
+  <MousePositionDemo v-if="mflag" />
+  <button @click="mflag = !mflag">change mouse position demo flag</button>
+  <hr />
+  <ProxyDemo />
 </template>
 
 <script lang="ts">
@@ -34,6 +39,8 @@ import ComputedDemo from "./components/ComputedDemo.vue";
 import ElementPluseDemo from "./components/ElementPluseDemo.vue";
 import TeleportDemo from "./components/TeleportDemo.vue";
 import SuspenseDemo from "./components/SuspenseDemo.vue";
+import MousePositionDemo from "./components/MousePosition/index.vue";
+import ProxyDemo from "./components/ProxyDemo.vue";
 
 import { defineComponent, defineAsyncComponent } from "vue";
 export default defineComponent({
@@ -41,6 +48,7 @@ export default defineComponent({
   data() {
     return {
       flag: true,
+      mflag: true,
       hellowordMsg: "Welcome to Vue3.0",
     };
   },
@@ -63,6 +71,8 @@ export default defineComponent({
     ),
     TeleportDemo,
     SuspenseDemo,
+    MousePositionDemo,
+    ProxyDemo
   },
 });
 </script>
