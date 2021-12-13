@@ -1,7 +1,7 @@
 <template>
   <div class="computed-demo">
     <div>Computed Demo</div>
-    <div>computed - {{ tempVal }}</div>
+    <div>computed: {{ tempVal.value }}</div>
   </div>
 </template>
 
@@ -9,9 +9,14 @@
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "computed-demo",
-  async setup() {
-    console.log("- computed demo mounted -");
-
+  data() {
+    return {
+      tempVal: {
+        value: null,
+      },
+    };
+  },
+  async mounted() {
     //#region 对 computed 实现的理解伪代码
     //    错误理解
     /* computed((getter) => {
@@ -33,7 +38,9 @@ export default defineComponent({
       return ref;
     }); */
 
-    let tempVal = {};
+    let tempVal = {
+      value: null,
+    };
 
     function aRefFunc(getter: Function) {
       console.log("- aRefFunc running -");
@@ -56,11 +63,9 @@ export default defineComponent({
     );
     console.log("- sleep with 1500 -");
     console.log("- tempVal - ", tempVal);
+    this.tempVal = tempVal;
 
     //#endregion
-    return {
-      tempVal,
-    };
   },
 });
 </script>
