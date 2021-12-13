@@ -8,13 +8,18 @@
       <br />
       <span v-if="loginUser.identity">{{ loginUser.identity }}</span>
     </div>
+    <button @click="sayHello">say hello</button> &nbsp;
+    <button @click="oneEvent($event), twoEvent($event)">many event</button>
+  </div>
+  <div class="world">
+    world
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  setup() {
+  setup(props, context) {
     // 登录用户信息
     interface IUser {
       name: string;
@@ -27,16 +32,30 @@ export default defineComponent({
       identity: "superAdmin",
     };
 
-    // 其它数据
+    function sayHello() {
+      context.emit("onSayHello", "hello");
+    }
+
+    function oneEvent(event: Event) {
+      console.log("oneEvent", event);
+    }
+
+    function twoEvent(event: Event) {
+      console.log("twoEvent", event);
+    }
 
     return {
       loginUser,
+      sayHello,
+      oneEvent,
+      twoEvent,
     };
   },
   name: "HelloWorld",
   props: {
     msg: String,
   },
+  emits: ["onSayHello"],
 });
 </script>
 

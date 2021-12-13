@@ -1,6 +1,6 @@
 <template>
-  <!-- <HelloWorld msg="Welcome to Vue3.0" />
-  <hr /> -->
+  <HelloWorld :msg="hellowordMsg" @onSayHello="sayHello" />
+  <hr />
   <LifeCyclesDemo v-if="flag" />
   <button @click="flag = !flag">change flag</button>
   <hr />
@@ -13,35 +13,58 @@
   <toRefsDemo />
   <hr />
   <ComputedDemo />
+  <hr />
+  <ElementPluseDemo />
+  <hr />
+  <AsyncComponentDemo />
+  <hr />
+  <TeleportDemo />
+  <hr />
+  <SuspenseDemo />
 </template>
 
 <script lang="ts">
-// import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld from "./components/HelloWorld.vue";
 import LifeCyclesDemo from "./components/LifeCyclesDemo.vue";
 import RefDemo from "./components/RefDemo.vue";
 import RefTemplateDemo from "./components/RefTemplateDemo.vue";
 import toRefDemo from "./components/toRefDemo.vue";
 import toRefsDemo from "./components/toRefsDemo.vue";
 import ComputedDemo from "./components/ComputedDemo.vue";
+import ElementPluseDemo from "./components/ElementPluseDemo.vue";
+import TeleportDemo from "./components/TeleportDemo.vue";
+import SuspenseDemo from "./components/SuspenseDemo.vue";
 
-
-export default {
+import { defineComponent, defineAsyncComponent } from "vue";
+export default defineComponent({
   name: "App",
   data() {
     return {
       flag: true,
+      hellowordMsg: "Welcome to Vue3.0",
     };
   },
+  methods: {
+    sayHello(info: string) {
+      this.hellowordMsg = info;
+    },
+  },
   components: {
-    // HelloWorld,
+    HelloWorld,
     LifeCyclesDemo,
     RefDemo,
     RefTemplateDemo,
     toRefDemo,
     toRefsDemo,
-    ComputedDemo
+    ComputedDemo,
+    ElementPluseDemo,
+    AsyncComponentDemo: defineAsyncComponent(
+      () => import("./components/AsyncComponentDemo.vue")
+    ),
+    TeleportDemo,
+    SuspenseDemo,
   },
-};
+});
 </script>
 
 <style>
